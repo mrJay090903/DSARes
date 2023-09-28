@@ -5,25 +5,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SearchEvenNumbersAction implements ActionListener {
-    private JFrame frame;
+    private JFrame menuFrame;
+    private int[] numbers;
 
-    public SearchEvenNumbersAction(JFrame frame) {
-        this.frame = frame;
+    public SearchEvenNumbersAction(JFrame menuFrame, int[] numbers) {
+        this.menuFrame = menuFrame;
+        this.numbers = numbers;
     }
 
     public void actionPerformed(ActionEvent e) {
-        // Action for button 2: Search Even Numbers
-        String input = JOptionPane.showInputDialog(frame, "2: Enter numbers separated by spaces:");
-        if (input != null && !input.isEmpty()) {
-            String[] numbers = input.split(" ");
-            StringBuilder evenNumbers = new StringBuilder("Even numbers: ");
-            for (String number : numbers) {
-                int num = Integer.parseInt(number);
-                if (num % 2 == 0) {
-                    evenNumbers.append(num).append(" ");
+        String input = JOptionPane.showInputDialog(menuFrame, "Enter '2' to display Even numbers:");
+        if ("2".equals(input)) {
+            String result = "Even numbers in the array: ";
+            for (int number : numbers) {
+                if (number % 2 == 0) {
+                    result += number + " ";
                 }
             }
-            JOptionPane.showMessageDialog(frame, evenNumbers.toString());
+            JOptionPane.showMessageDialog(menuFrame, result);
+        } else {
+            JOptionPane.showMessageDialog(menuFrame, "Invalid input. Please enter '1' to display odd numbers.");
         }
     }
 }

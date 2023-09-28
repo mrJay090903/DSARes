@@ -8,7 +8,8 @@ public class Main_class {
     private JFrame frame;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JButton button1;
+    private int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Array of numbers
+    private JButton button1; // Button for Search Odd Numbers
     private JButton button2;
     private JButton button3;
     private JButton button4;
@@ -61,7 +62,7 @@ public class Main_class {
     }
 
     private void showMenu() {
-        // Create a menu with options numbered from 1 to 10
+    	 // Create a menu with options numbered from 1 to 10
         JFrame menuFrame = new JFrame("Menu");
         menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit the application when this frame is closed
         menuFrame.setSize(400, 300);
@@ -78,9 +79,10 @@ public class Main_class {
         button9 = new JButton("9. Delete Elements Divisible by 3");
         button10 = new JButton("10. Delete Elements Divisible by User Input");
 
-        // Create instances of action classes and attach them to buttons
-        button1.addActionListener(new SearchOddNumbersAction(menuFrame));
-        button2.addActionListener(new SearchEvenNumbersAction(menuFrame));
+     // Create instances of action classes and attach them to buttons
+        button1.addActionListener(new SearchOddNumbersAction(menuFrame, numbers));
+        
+        button2.addActionListener(new SearchEvenNumbersAction(menuFrame, numbers));
         button3.addActionListener(new SwapOddEvenNumbersAction(menuFrame));
 
         // Add buttons to the menu frame
@@ -98,11 +100,11 @@ public class Main_class {
         // Make the menu frame visible
         menuFrame.setVisible(true);
     }
-
+    
     private boolean login(String username, String password) {
         // Define valid username-password pairs
-        String[] validUsernames = {"cope", "barcelona", "belaos", "dacillo", "broqueza"};
-        String[] validPasswords = {"admin1", "admin2", "admin3", "admin4", "admin5"};
+        String[] validUsernames = {"1","cope", "barcelona", "belaos", "dacillo", "broqueza"};
+        String[] validPasswords = {"1","admin1", "admin2", "admin3", "admin4", "admin5"};
 
         // Check if the entered username and password match any of the valid pairs
         for (int i = 0; i < validUsernames.length; i++) {

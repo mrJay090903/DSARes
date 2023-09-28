@@ -5,25 +5,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SearchOddNumbersAction implements ActionListener {
-    private JFrame frame;
+    private JFrame menuFrame;
+    private int[] numbers;
 
-    public SearchOddNumbersAction(JFrame frame) {
-        this.frame = frame;
+    public SearchOddNumbersAction(JFrame menuFrame, int[] numbers) {
+        this.menuFrame = menuFrame;
+        this.numbers = numbers;
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        // Action for button 1: Search Odd Numbers
-        String input = JOptionPane.showInputDialog(frame, "1: Enter numbers separated by spaces:");
-        if (input != null && !input.isEmpty()) {
-            String[] numbers = input.split(" ");
-            StringBuilder oddNumbers = new StringBuilder("Odd numbers: ");
-            for (String number : numbers) {
-                int num = Integer.parseInt(number);
-                if (num % 2 != 0) {
-                    oddNumbers.append(num).append(" ");
+        String input = JOptionPane.showInputDialog(menuFrame, "Enter '1' to display odd numbers:");
+        if ("1".equals(input)) {
+            String result = "Odd numbers in the array: ";
+            for (int number : numbers) {
+                if (number % 2 != 0) {
+                    result += number + " ";
                 }
             }
-            JOptionPane.showMessageDialog(frame, oddNumbers.toString());
+            JOptionPane.showMessageDialog(menuFrame, result);
+        } else {
+            JOptionPane.showMessageDialog(menuFrame, "Invalid input. Please enter '2' to display odd numbers.");
         }
     }
 }
